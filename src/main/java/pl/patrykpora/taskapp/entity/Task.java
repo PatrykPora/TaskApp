@@ -25,7 +25,7 @@ public class Task {
     @CreationTimestamp()
     @Temporal(TemporalType.TIMESTAMP)
     @Column(updatable = false, nullable = false)
-    private Date timeOfCreation;
+    private Date createdAt;
 
     @ManyToOne
     @JoinColumn(name = "userId")
@@ -66,12 +66,12 @@ public class Task {
         this.typeOfTask = typeOfTask;
     }
 
-    public Date getTimeOfCreation() {
-        return timeOfCreation;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setTimeOfCreation(Date timeOfCreation) {
-        this.timeOfCreation = timeOfCreation;
+    public void setCreatedAt(Date timeOfCreation) {
+        this.createdAt = timeOfCreation;
     }
 
     public User getUser() {
