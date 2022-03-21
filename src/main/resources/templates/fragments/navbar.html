@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<body>
+<!-- Navigation -->
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Task Application</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" href="#">Users</a>
+                </li>
+            </ul>
+            <div sec:authorize="isAuthenticated()">
+                <span style="color: white">Zalogowano jako: <span sec:authentication="name"></span></span>
+                <form method="post" th:action="@{/logout}">
+                    <input type="submit" value="Wyloguj się">
+                </form>
+            </div>
+            <div sec:authorize="hasRole('ROLE_USER')">
+                <span style="color: white">ROLE_USER</span>
+            </div>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <span style="color: white">ROLE_ADMIN</span>
+            </div>
+
+        </div>
+    </div>
+</nav>
+</body>
+</html>
