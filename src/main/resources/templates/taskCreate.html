@@ -5,16 +5,16 @@
 <head th:replace="fragments/head.html :: header"></head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
-    <form class="pb-3 bg-light" method="post" th:object="${task}" action="@{/task/create}">
+    <form class="p-3 bg-light" method="post" th:object="${task}" th:action="@{/task/create}">
         <div class="form-group col-md-8">
-            <label for="name">nazwa zadania</label>
-            <input type="text" class="form-control" name="name" id="name" th:value="${task.nameOfTask}">
-            <div class="invalid-feedback"style="display: block" th:if="${#fields.hasErrors('name')}"
+            <label for="nameOfTask">nazwa zadania</label>
+            <input type="text" class="form-control" name="nameOfTask" id="nameOfTask" th:value="${task.nameOfTask}">
+            <div class="invalid-feedback" style="display: block" th:if="${#fields.hasErrors('nameOfTask')}"
                  th:errors="*{nameOfTask}"></div>
         </div>
         <div class="form-group col-ms-4">
             <label for="type">typ zadania</label>
-            <select name="type"id="type" th:field="*{typeOfTask}">
+            <select name="type" id="type" th:field="*{typeOfTask}">
                 <option th:each="type: ${T(pl.patrykpora.taskapp.entity.TypeOfTask).values()}"
                     th:value="${type}"
                         th:text="${type}"></option>
@@ -24,7 +24,7 @@
             <label for="description">opis zadania</label>
             <input type="text" class="form-control" name="description" id="description" th:value="${task.description}" >
         </div>
-    <button type="submit"class="btn btn-primary">zapisz</button>
+    <button type="submit" class="btn btn-primary">zapisz</button>
     </form>
 </body>
 </html>
