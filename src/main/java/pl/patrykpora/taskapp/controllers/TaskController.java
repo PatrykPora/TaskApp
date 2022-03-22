@@ -56,12 +56,12 @@ public class TaskController {
     }
 
     @PostMapping("/create")
-    public String createTask(@Valid TaskDto taskDto, Errors errors, Model model){
+    public String createTask(@Valid TaskDto task, Errors errors, Model model){
         if (errors.hasErrors()){
-            model.addAttribute("task", taskDto);
+            model.addAttribute("task", task);
             return "taskCreate";
         }
-        taskService.create(taskDto);
+        taskService.create(task);
         return "redirect:/task";
     }
 }
